@@ -1,11 +1,21 @@
 import React from 'react'
-import { PageProps } from '../../../.next/types/app/layout'
+
+interface PageProps {
+    params: {
+        url: string | string[] | undefined
+    }
+}
 
 const page = ({params} : PageProps) => {
-    console.log(params)
-  return <p>Hello</p>
-    
-  
+    if (params.url && Array.isArray(params.url) && params.url.length === 2) {
+        return (
+            <h1>this would show : {params.url[0]} and also for up for the {params.url[1]}</h1>
+        )
+    }
+
+    return (
+        <h1>Invalid URL</h1>
+    )
 }
 
 export default page
